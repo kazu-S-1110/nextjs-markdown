@@ -4,6 +4,7 @@ import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 import { fetchOutputs } from '../lib/contentful';
 import ReactMarkdown from 'react-markdown';
+import { Text } from '@chakra-ui/react';
 
 interface Props {
   outputs: any;
@@ -25,7 +26,9 @@ const Home: NextPage<Props> = ({ outputs }) => {
           return (
             <>
               <p key={output.sys.id}>{output.fields.name}</p>
-              <ReactMarkdown>{markdown}</ReactMarkdown>
+              <Text>
+                <ReactMarkdown>{markdown}</ReactMarkdown>
+              </Text>
             </>
           );
         })}
