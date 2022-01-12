@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 import { fetchOutputs } from '../lib/contentful';
+import ReactMarkdown from 'react-markdown';
 
 interface Props {
   outputs: any;
@@ -20,7 +21,13 @@ const Home: NextPage<Props> = ({ outputs }) => {
       <main className={styles.main}>
         test
         {outputs?.map((output: any) => {
-          return <p key={output.sys.id}>{output.fields.name}</p>;
+          const markdown: string = output.fields.description;
+          return (
+            <>
+              <p key={output.sys.id}>{output.fields.name}</p>
+              <ReactMarkdown>{markdown}</ReactMarkdown>
+            </>
+          );
         })}
       </main>
     </div>
